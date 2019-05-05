@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BASE_URL } from "src/environments/environment";
+import { WsService } from "src/app/services/ws.service";
+import { AirmapService } from "src/app/services/airmap.service";
+import { interval } from "rxjs";
+import { flatMap, take } from "rxjs/operators";
 
 @Component({
   selector: "app-home",
@@ -8,14 +12,9 @@ import { BASE_URL } from "src/environments/environment";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  message: string;
-  constructor(public http: HttpClient) {}
+  images: Array<string>;
+  constructor(private airmapService: AirmapService) {}
 
   ngOnInit() {
-    this.http
-      .get(`${BASE_URL}/airmap`, { responseType: "text" })
-      .subscribe(message => {
-        console.log(message);
-      });
   }
 }

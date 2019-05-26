@@ -1,0 +1,19 @@
+<h1 class="header">
+  เลือกระดับความสูงที่สนใจ (เมตร)
+</h1>
+<div class="container">
+  <button
+    mat-raised-button
+    [ngClass]="{
+      btn: true,
+      selected: btn.selected,
+      firstCol: index % 10 === 0,
+      lastCol: (index + 1) % 10 === 0,
+      last: last
+    }"
+    *ngFor="let btn of buttonList; index as index; last as last"
+    (click)="toggle(btn)"
+  >
+    {{ btn.value }}
+  </button>
+</div>

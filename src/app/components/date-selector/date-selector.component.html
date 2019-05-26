@@ -1,0 +1,23 @@
+<h1 class="header">เลือกช่วงเวลา</h1>
+
+<input
+  readonly
+  class="datepicker"
+  [matDatepicker]="from"
+  (click)="from.open()"
+  (dateChange)="handleFromChange($event)"
+  placeholder="คลิกเพื่อเลือก"
+/>
+<mat-datepicker #from></mat-datepicker>
+
+<span class="middle">ถึง</span>
+
+<input
+  readonly
+  class="datepicker"
+  [matDatepicker]="to"
+  (click)="to.open()"
+  (dateChange)="handleToChange($event)"
+  placeholder="คลิกเพื่อเลือก"
+/>
+<mat-datepicker #to></mat-datepicker>

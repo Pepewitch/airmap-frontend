@@ -1,3 +1,5 @@
 <div>
-  <app-image-animator [images]="images"></app-image-animator>
+  <app-height-selector (change)="handleHeightChange($event)"></app-height-selector>
+  <app-date-selector (change)="handleDateChange($event)"></app-date-selector>
+  <!-- <app-image-animator [images]="images"></app-image-animator> -->
 </div>

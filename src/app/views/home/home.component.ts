@@ -22,4 +22,11 @@ export class HomeComponent implements OnInit {
     }
     this.images = images;
   }
+
+  handleHeightChange(e) {
+    console.log(e);
+  }
+  handleDateChange(e) {
+    console.log(e);
+  }
 }

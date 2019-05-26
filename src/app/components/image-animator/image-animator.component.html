@@ -1,4 +1,4 @@
-<div class="container">
-  <img [src]="nextImage" alt="next" class="next-image">
-  <img [src]="currentImage" alt="current" class="current-image">
+<div class="container" (click)="togglePlaying()">
+  <img #next [src]="nextImage" alt="next" class="next-image">
+  <img #current [src]="currentImage" alt="current" class="current-image">
 </div>

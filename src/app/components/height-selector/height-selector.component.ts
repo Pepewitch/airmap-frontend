@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./height-selector.component.scss']
 })
 export class HeightSelectorComponent implements OnInit {
-  @Input() min = 0;
+  @Input() min = 10;
   @Input() max = 400;
   @Input() step = 10;
   @Output() change = new EventEmitter();

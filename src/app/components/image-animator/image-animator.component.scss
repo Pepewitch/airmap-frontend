@@ -1,8 +1,13 @@
+.header {
+  color: white;
+}
+
 .container {
   position: relative;
 }
 
-.next-image,.current-image {
+.next-image,
+.current-image {
   position: absolute;
   top: 0;
   left: 0;

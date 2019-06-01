@@ -14,6 +14,7 @@ import {
 } from '@angular/material';
 import { HeightSelectorComponent } from './components/height-selector/height-selector.component';
 import { DateSelectorComponent } from './components/date-selector/date-selector.component';
+import { AnimateComponent } from './views/animate/animate.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DateSelectorComponent } from './components/date-selector/date-selector.
     ImageAnimatorComponent,
     HomeComponent,
     HeightSelectorComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    AnimateComponent
   ],
   imports: [
     BrowserModule,

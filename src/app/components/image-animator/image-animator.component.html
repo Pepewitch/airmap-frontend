@@ -1,7 +1,12 @@
-<h1 class="header">
-  มุมมองแผนที่
-</h1>
-<!-- <div class="container" (click)="togglePlaying()">
+<div class="title">
+  <span class="height"> ระดับ {{ height }} เมตร </span>
+  <app-speed-selector #speedSelector></app-speed-selector>
+</div>
+<div class="container" (click)="togglePlaying()">
   <img #next [src]="nextImage" alt="next" class="next-image" />
   <img #current [src]="currentImage" alt="current" class="current-image" />
-</div> -->
+  <img
+    [ngClass]="{ play: true, active: !isPlaying }"
+    src="/assets/button_play_1-512.png"
+  />
+</div>

@@ -1,0 +1,11 @@
+<h1 class="header">
+  มุมมองแผนที่
+</h1>
+<app-image-animator
+  *ngFor="let animatorImage of animatorImages"
+  [images]="animatorImage.images"
+  [height]="animatorImage.height"
+  [initialIndex]="animatorImage.currentIndex"
+  (indexChange)="updateIndex(animatorImage, $event)"
+>
+</app-image-animator>

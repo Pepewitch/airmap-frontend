@@ -1,0 +1,17 @@
+<div class="container">
+  <span class="text">เลือกสปีด</span>
+  <button
+    mat-raised-button
+    [ngClass]="{
+      btn: true,
+      selected: selectedSpeed === btn.value,
+      firstCol: index % 4 === 0,
+      lastCol: (index + 1) % 4 === 0,
+      last: last
+    }"
+    *ngFor="let btn of buttonList; index as index; last as last"
+    (click)="select(btn)"
+  >
+    {{ btn.value }}
+  </button>
+</div>

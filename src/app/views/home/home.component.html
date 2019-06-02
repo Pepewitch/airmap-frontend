@@ -1,13 +1,11 @@
 <section class="select-section">
   <div class="content">
-    <app-height-selector
-      (change)="handleHeightChange($event)"
-    ></app-height-selector>
-    <app-date-selector (change)="handleDateChange($event)"></app-date-selector>
+    <app-height-selector></app-height-selector>
+    <app-date-selector></app-date-selector>
   </div>
 </section>
 <section class="showing-section">
   <div class="content">
-    <app-image-animator [images]="images"></app-image-animator>
+    <app-animator-list></app-animator-list>
   </div>
 </section>

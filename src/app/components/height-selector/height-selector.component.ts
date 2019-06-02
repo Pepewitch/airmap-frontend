@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AirmapService } from 'src/app/services/airmap.service';
 
 @Component({
   selector: 'app-height-selector',
@@ -11,7 +12,7 @@ export class HeightSelectorComponent implements OnInit {
   @Input() step = 10;
   @Output() change = new EventEmitter();
   buttonList = [];
-  constructor() {}
+  constructor(private airmapService: AirmapService) {}
 
   ngOnInit() {
     for (let i = this.min; i <= this.max; i += this.step) {
@@ -20,7 +21,9 @@ export class HeightSelectorComponent implements OnInit {
   }
   toggle(btn) {
     btn.selected = !btn.selected;
-    this.change.emit(this.getSelected());
+    const value = this.getSelected();
+    this.change.emit(value);
+    this.airmapService.height.next(value);
   }
   getSelected() {
     return this.buttonList.filter(btn => btn.selected).map(btn => btn.value);

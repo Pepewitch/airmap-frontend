@@ -1,7 +1,9 @@
-@import '../../../theme.scss';
+@import '../../../../theme.scss';
 
-.header {
-  color: $primary;
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
 .btn {
@@ -9,8 +11,8 @@
   border-style: solid;
   border-radius: 0;
   border-collapse: collapse;
-  margin-bottom: 1em;
   color: $primary;
+  background: white;
   border-width: 1px 0 1px 1px;
   &.firstCol {
     border-top-left-radius: 8px;
@@ -28,7 +30,6 @@
   }
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
+.text {
+    margin-right: 16px;
 }

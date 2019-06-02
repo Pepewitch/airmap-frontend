@@ -10,8 +10,6 @@ export class WsService {
   connect(path: string) {
     const seperator = path.length > 0 && path[0] !== '/' ? '/' : '';
     const socket = io(`${WS_BASE_URL}${seperator}${path}`);
-    console.log(`${WS_BASE_URL}${seperator}${path}`);
-    console.log(socket);
     return socket;
   }
 }

@@ -15,6 +15,8 @@ import {
 import { HeightSelectorComponent } from './components/height-selector/height-selector.component';
 import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 import { AnimateComponent } from './views/animate/animate.component';
+import { AnimatorListComponent } from './components/animator-list/animator-list.component';
+import { SpeedSelectorComponent } from './components/image-animator/speed-selector/speed-selector.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AnimateComponent } from './views/animate/animate.component';
     HomeComponent,
     HeightSelectorComponent,
     DateSelectorComponent,
-    AnimateComponent
+    AnimateComponent,
+    AnimatorListComponent,
+    SpeedSelectorComponent
   ],
   imports: [
     BrowserModule,

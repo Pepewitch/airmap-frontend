@@ -1,7 +1,16 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { AirmapService } from 'src/app/services/airmap.service';
-import { forkJoin, Observable, interval, Subject } from 'rxjs';
+import { forkJoin, Observable, interval, Subject, of } from 'rxjs';
 import { map, flatMap, delay } from 'rxjs/operators';
+import { SpeedSelectorComponent } from './speed-selector/speed-selector.component';
 
 @Component({
   selector: 'app-image-animator',
@@ -9,21 +18,29 @@ import { map, flatMap, delay } from 'rxjs/operators';
   styleUrls: ['./image-animator.component.scss']
 })
 export class ImageAnimatorComponent implements OnInit {
-  @Input() images: Array<string>;
-  @Input() buffer = 3;
-  @Input() period = 1000;
+  @Input() height: number;
+  @Input() images: Array<string> = [];
+  @Input() initialIndex = 0;
   currentIndex = -1;
+  buffer = 3;
+  basePeriod = 1000;
   currentImage = '';
   nextImage = '';
   isPlaying = false;
   @ViewChild('current') currentEl: ElementRef<HTMLImageElement>;
   @ViewChild('next') nextEl: ElementRef<HTMLImageElement>;
+  @ViewChild('speedSelector') speedSelectorEl: SpeedSelectorComponent;
+  @Output() indexChange = new EventEmitter();
   constructor(private airmapService: AirmapService) {}
 
   ngOnInit() {
     if (this.images.length > 0) {
-      this.set(0).subscribe();
+      this.set(this.initialIndex).subscribe();
     }
+  }
+
+  get period() {
+    return this.basePeriod / this.speedSelectorEl.speed;
   }
 
   fetchBuffer() {
@@ -42,6 +59,7 @@ export class ImageAnimatorComponent implements OnInit {
   set(index) {
     if (index < this.images.length) {
       this.currentIndex = index;
+      this.indexChange.emit(index);
       const obs = [
         this.airmapService.getImage(this.images[index]).pipe(
           map(image => {
@@ -60,6 +78,7 @@ export class ImageAnimatorComponent implements OnInit {
       }
       return forkJoin(obs);
     }
+    return of([]);
   }
 
   fade(time: number) {
@@ -89,7 +108,7 @@ export class ImageAnimatorComponent implements OnInit {
   }
 
   goNextFrame() {
-    return this.fade(Math.abs(this.period / 2)).pipe(
+    return this.fade(Math.floor(this.period / 2)).pipe(
       flatMap(() => this.set(this.currentIndex + 1)),
       flatMap(() => this.show()),
       flatMap(() => this.fetchBuffer())
@@ -100,6 +119,9 @@ export class ImageAnimatorComponent implements OnInit {
     this.goNextFrame()
       .pipe(delay(Math.abs(this.period / 2)))
       .subscribe(() => {
+        if (this.currentIndex === this.images.length - 1) {
+          this.isPlaying = false;
+        }
         if (this.isPlaying) {
           this.play();
         }
@@ -107,6 +129,9 @@ export class ImageAnimatorComponent implements OnInit {
   }
 
   start() {
+    if (this.currentIndex >= this.images.length - 1) {
+      this.set(0).subscribe();
+    }
     this.isPlaying = true;
     this.play();
   }
